@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricketBooker - Book Cricket Ground</title>
+    <link rel="stylesheet" href="./css/book-ground.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">Cricket<span>Booker</span></a>
+            <ul class="nav-menu">
+                <li class="nav-item" id="nav1">
+                    <span class="nav-link">
+                        Ticket Booking
+                    </span>
+                </li>
+                <li class="nav-item" id="nav2">
+                    <span class="nav-link active">
+                        Book Ground
+                    </span>
+                </li>
+                <li class="nav-item" id="nav3">
+                    <span class="nav-link">
+                        Cancel Booking
+                    </span>
+                </li>
+            </ul>
+            <button class="hamburger">☰</button>
+        </nav>
+      </header>
+
+    <main>
+        <h1 class="page-title">Book Cricket Ground</h1>
+
+        <div class="booking-container">
+            <div class="filters-sidebar">
+                <h2 class="filters-title">Filter Grounds</h2>
+                <form>
+                    <div class="filter-group">
+                        <label for="location">Location</label>
+                        <select id="location" name="location">
+                            <option value="">All Locations</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="chennai">Chennai</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="date">Booking Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="time">Preferred Time</label>
+                        <select id="time" name="time">
+                            <option value="">Any Time</option>
+                            <option value="morning">Morning (6am - 12pm)</option>
+                            <option value="afternoon">Afternoon (12pm - 4pm)</option>
+                            <option value="evening">Evening (4pm - 7pm)</option>
+                            <option value="night">Night (7pm - 11pm)</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Ground Type</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="type" value="turf"> Turf Ground
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="type" value="concrete"> Concrete Pitch
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="type" value="indoor"> Indoor Facility
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Amenities</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="amenities" value="floodlights"> Floodlights
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="amenities" value="dressing"> Dressing Rooms
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="amenities" value="parking"> Parking
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="amenities" value="scoreboard"> Electronic Scoreboard
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Price Range (₹ per hour)</label>
+                        <div class="price-range">
+                            <div class="price-input">
+                                <input type="number" placeholder="Min" name="min-price">
+                            </div>
+                            <div class="price-input">
+                                <input type="number" placeholder="Max" name="max-price">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="filter-btn">Apply Filters</button>
+                        <button type="reset" class="reset-btn">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ground-listings">
+                <!-- Ground 1 -->
+                <div class="ground-card">
+                    <div class="ground-image">
+                        <img src="https://www.espncricinfo.com/inline/content/image/335266.html?alt=2" alt="Cricket Ground">
+                        <div class="ground-badge">PREMIUM</div>
+                    </div>
+
+                    <div class="ground-content">
+                        <h2 class="ground-title">Oval Cricket Ground</h2>
+                        <div class="ground-location">📍 Andheri East, Mumbai</div>
+
+                        <div class="ground-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="rating-count">(42 reviews)</span>
+                        </div>
+
+                        <div class="ground-features">
+                            <span class="feature-tag">Turf Ground</span>
+                        </div>
+
+                    </div>
+                </div>
+    </main>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>

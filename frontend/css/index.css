@@ -1,0 +1,426 @@
+
+     * {
+      margin: 0;
+      padding: 0px;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #ff6600;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-item {
+      margin-left: 25px;
+    }
+
+    .nav-link {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: #0066cc;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #0066cc;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: #0066cc;
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-button {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #0055aa;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: #ffffff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-item {
+        margin: 15px 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    .container{
+        display: flex;
+        width: 100vw;
+        /* flex-direction: row; */
+    }
+
+    .page-title {
+      font-size: 2rem;
+      color: #1e3a8a;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #4ade80;
+    }
+    
+    .matches-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .match-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      padding: 4px;
+    }
+    
+    .match-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .match-header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      position: relative;
+    }
+    
+    .match-date {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .match-title {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    
+    .match-venue {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .match-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #4ade80;
+      color: #1e3a8a;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+    
+    .match-content {
+      padding: 1rem;
+    }
+    
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .team {
+      text-align: center;
+      width: 40%;
+    }
+    
+    .team-logo {
+      background-color: #f0f0f0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.5rem;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+    
+    .vs {
+      font-weight: bold;
+      color: #666;
+    }
+    
+    .match-info {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .info-row {
+      display: flex;
+      margin-bottom: 0.5rem;
+    }
+    
+    .info-label {
+      width: 100px;
+      font-weight: 500;
+      color: #666;
+    }
+    
+    .ticket-types {
+      margin-top: 1rem;
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+    }
+    
+    .ticket-type {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .ticket-name {
+      font-weight: 500;
+    }
+    
+    .ticket-price {
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    
+    .tickets-remaining {
+      font-size: 0.8rem;
+      color: #f97316;
+    }
+
+    main {
+        flex: 1;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .book-btn {
+      background-color: #1e3a8a;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      width: 100%;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .book-btn:hover {
+      background-color: #1e40af;
+    }
+    
+    .search-filters {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      margin-right: 12px;
+      margin-left: 12px;
+      width: 80vw;
+    }
+    
+    .filters-title {
+      font-size: 1.2rem;
+      color: #1e3a8a;
+      margin-bottom: 1rem;
+    }
+    
+    .filters-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .filter-group {
+      margin-bottom: 1rem;
+    }
+    
+    .filter-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #4b5563;
+    }
+    
+    .filter-group select,
+    .filter-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .filter-group select:focus,
+    .filter-group input:focus {
+      outline: none;
+      border-color: #1e3a8a;
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+    
+    .filter-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .search-btn {
+      background-color: #1e3a8a;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      flex: 1;
+    }
+    
+    .reset-btn {
+      background-color: #f3f4f6;
+      color: #4b5563;
+      border: 1px solid #d1d5db;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    footer {
+      background-color: #1e3a8a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+    
+    @media (max-width: 768px) {
+      .matches-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .filters-form {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .t-book{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 650px;
+    }
+
+    #nav1{
+        cursor: pointer;
+    }
+
+    #nav2{
+        cursor: pointer;
+    }
+
+    #nav3{
+        cursor: pointer;
+    }
