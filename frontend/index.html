@@ -2,196 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CricketBooker - Book Match Tickets</title>
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="#" class="logo">Cricket<span>Booker</span></a>
-            <ul class="nav-menu">
-                <li class="nav-item" id="nav1">
-                    <span class="nav-link active">
-                        Ticket Booking
-                    </span>
-                </li>
-                <li class="nav-item" id="nav2">
-                    <span class="nav-link">
-                        Book Ground
-                    </span>
-                </li>
-                <li class="nav-item" id="nav3">
-                    <span class="nav-link">
-                        Cancel Booking
-                    </span>
-                </li>
-            </ul>
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">Cricket<span>Booker</span></a>
+      <ul class="nav-menu">
+        <li class="nav-item" id="nav1">
+          <span class="nav-link active">
+            Ticket Booking
+          </span>
+        </li>
+        <li class="nav-item" id="nav2">
+          <span class="nav-link">
+            Book Ground
+          </span>
+        </li>
+        <li class="nav-item" id="nav3">
+          <span class="nav-link">
+            Cancel Booking
+          </span>
+        </li>
+      </ul>
 
-            <button class="hamburger">☰</button>
-        </nav>
-    </header>
-    <div>
-        <h1 class="page-title">Book Match Tickets</h1>
-    </div>
-    <main class="">
-        <div class="">
-            <!-- ticket booking -->
+      <div style="cursor: pointer;" id="nav4">
+          <img width="40" src="./images/user_profile.png" alt="user" />
+        </span>
+      </div>
+    </nav>
+  </header>
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 23px;">
+    <h1 class="page-title">Book Match Tickets</h1>
+  </div>
+  <main class="">
+    <div class="">
+      <!-- ticket booking -->
 
-            <section class="search-filters">
-                <h2 class="filters-title">Find Your Match</h2>
-                <form class="filters-form">
-                    <div class="filter-group">
-                        <label for="location">Location</label>
-                        <select id="location">
-                            <option value="">All Locations</option>
-                            <option value="mumbai">Mumbai</option>
-                            <option value="delhi">Delhi</option>
-                            <option value="chennai">Chennai</option>
-                            <option value="bangalore">Bangalore</option>
-                            <option value="kolkata">Kolkata</option>
-                        </select>
-                    </div>
+      <section class="search-filters">
+        <h2 class="filters-title">Find Your Match</h2>
+        <form class="filters-form">
+          <div class="filter-group">
+            <label for="location">Location</label>
+            <select id="location">
+              <option value="">All Locations</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="delhi">Delhi</option>
+              <option value="chennai">Chennai</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="kolkata">Kolkata</option>
+            </select>
+          </div>
 
-                    <div class="filter-group">
-                        <label for="date-from">From Date</label>
-                        <input type="date" id="date-from">
-                    </div>
+          <div class="filter-group">
+            <label for="date-from">From Date</label>
+            <input type="date" id="date-from">
+          </div>
 
-                    <div class="filter-group">
-                        <label for="date-to">To Date</label>
-                        <input type="date" id="date-to">
-                    </div>
+          <div class="filter-group">
+            <label for="date-to">To Date</label>
+            <input type="date" id="date-to">
+          </div>
 
-                    <div class="filter-group">
-                        <label for="team">Team</label>
-                        <select id="team">
-                            <option value="">Any Team</option>
-                            <option value="india">India</option>
-                            <option value="mumbai-indians">Mumbai Indians</option>
-                            <option value="chennai-super-kings">Chennai Super Kings</option>
-                            <option value="royal-challengers">Royal Challengers</option>
-                            <option value="rajasthan-royals">Rajasthan Royals</option>
-                        </select>
-                    </div>
+          <div class="filter-group">
+            <label for="team">Team</label>
+            <select id="team">
+              <option value="">Any Team</option>
+              <option value="india">India</option>
+              <option value="mumbai-indians">Mumbai Indians</option>
+              <option value="chennai-super-kings">Chennai Super Kings</option>
+              <option value="royal-challengers">Royal Challengers</option>
+              <option value="rajasthan-royals">Rajasthan Royals</option>
+            </select>
+          </div>
 
-                    <div class="filter-group">
-                        <label for="tournament">Tournament</label>
-                        <select id="tournament">
-                            <option value="">All Tournaments</option>
-                            <option value="ipl">IPL 2025</option>
-                            <option value="wc">Cricket World Cup</option>
-                            <option value="ranji">Ranji Trophy</option>
-                            <option value="t20">T20 Series</option>
-                        </select>
-                    </div>
-
-
-                    <div>
-                        <div class="filter-actions">
-                            <button type="submit" class="search-btn">Search Matches</button>
-                            <button type="reset" class="reset-btn">Reset</button>
-                        </div>
-                    </div>
+          <div class="filter-group">
+            <label for="tournament">Tournament</label>
+            <select id="tournament">
+              <option value="">All Tournaments</option>
+              <option value="ipl">IPL 2025</option>
+              <option value="wc">Cricket World Cup</option>
+              <option value="ranji">Ranji Trophy</option>
+              <option value="t20">T20 Series</option>
+            </select>
+          </div>
 
 
-                </form>
-            </section>
+          <div>
+            <div class="filter-actions">
+              <button type="submit" class="search-btn">Search Matches</button>
+              <button type="reset" class="reset-btn">Reset</button>
+            </div>
+          </div>
 
-            <section class="matches-container">
-                <!-- Match Card 1 -->
-                <div class="match-card">
-                    <div class="match-header">
-                        <div class="match-date">Sunday, March 16, 2025 | 7:30 PM</div>
-                        <h3 class="match-title">IPL 2025 - Match 12</h3>
-                        <div class="match-venue">🏟️ Wankhede Stadium, Mumbai</div>
-                        <div class="match-badge">TRENDING</div>
-                    </div>
 
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo">MI</div>
-                                <div class="team-name">Mumbai Indians</div>
-                            </div>
+        </form>
+      </section>
 
-                            <div class="vs">VS</div>
+      <section class="matches-container">
+        <!-- Match Card 1 -->
+        <div class="match-card">
+          <div class="match-header">
+            <div class="match-date">Sunday, March 16, 2025 | 7:30 PM</div>
+            <h3 class="match-title">IPL 2025 - Match 12</h3>
+            <div class="match-venue">🏟️ Wankhede Stadium, Mumbai</div>
+            <div class="match-badge">TRENDING</div>
+          </div>
 
-                            <div class="team">
-                                <div class="team-logo">CSK</div>
-                                <div class="team-name">Chennai Super Kings</div>
-                            </div>
-                        </div>
+          <div class="match-content">
+            <div class="teams">
+              <div class="team">
+                <div class="team-logo">MI</div>
+                <div class="team-name">Mumbai Indians</div>
+              </div>
 
-                        <div class="match-info">
-                            <div class="info-row">
-                                <div class="info-label">Status:</div>
-                                <div class="info-value">Tickets Available</div>
-                            </div>
-                        </div>
+              <div class="vs">VS</div>
 
-                        <div class="ticket-types">
-                            <div class="ticket-type">
-                                <div class="ticket-name">General Stand</div>
-                                <div class="ticket-price">₹1,500</div>
-                            </div>
-                            <div class="tickets-remaining">452 tickets remaining</div>
+              <div class="team">
+                <div class="team-logo">CSK</div>
+                <div class="team-name">Chennai Super Kings</div>
+              </div>
+            </div>
 
-                            <div class="ticket-type">
-                                <div class="ticket-name">Premium Stand</div>
-                                <div class="ticket-price">₹3,000</div>
-                            </div>
-                            <div class="tickets-remaining">215 tickets remaining</div>
+            <div class="match-info">
+              <div class="info-row">
+                <div class="info-label">Status:</div>
+                <div class="info-value">Tickets Available</div>
+              </div>
+            </div>
 
-                            <div class="ticket-type">
-                                <div class="ticket-name">VIP Box</div>
-                                <div class="ticket-price">₹8,000</div>
-                            </div>
-                            <div class="tickets-remaining">32 tickets remaining</div>
-                        </div>
+            <div class="ticket-types">
+              <div class="ticket-type">
+                <div class="ticket-name">General Stand</div>
+                <div class="ticket-price">₹1,500</div>
+              </div>
+              <div class="tickets-remaining">452 tickets remaining</div>
 
-                        <button class="book-btn">Book Now</button>
-                    </div>
-                </div>
+              <div class="ticket-type">
+                <div class="ticket-name">Premium Stand</div>
+                <div class="ticket-price">₹3,000</div>
+              </div>
+              <div class="tickets-remaining">215 tickets remaining</div>
 
-                <!-- Match Card 2 -->
-                <div class="match-card">
-                    <div class="match-header">
-                        <div class="match-date">Saturday, March 22, 2025 | 3:30 PM</div>
-                        <h3 class="match-title">IPL 2025 - Match 17</h3>
-                        <div class="match-venue">🏟️ M. Chinnaswamy Stadium, Bangalore</div>
-                    </div>
+              <div class="ticket-type">
+                <div class="ticket-name">VIP Box</div>
+                <div class="ticket-price">₹8,000</div>
+              </div>
+              <div class="tickets-remaining">32 tickets remaining</div>
+            </div>
 
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo">RCB</div>
-                                <div class="team-name">Royal Challengers</div>
-                            </div>
-
-                            <div class="vs">VS</div>
-
-                            <div class="team">
-                                <div class="team-logo">KKR</div>
-                                <div class="team-name">Kolkata Knight Riders</div>
-                            </div>
-                        </div>
-
-                        <div class="match-info">
-                            <div class="info-row">
-                                <div class="info-label">Status:</div>
-                                <div class="info-value">Tickets Available</div>
-                            </div>
-                        </div>
-
-                    </div>
-            </section>
-
-            <script src="./js/index.js"></script>
+            <button class="book-btn">Book Now</button>
+          </div>
         </div>
-    </main>
+
+        <!-- Match Card 2 -->
+        <div class="match-card">
+          <div class="match-header">
+            <div class="match-date">Saturday, March 22, 2025 | 3:30 PM</div>
+            <h3 class="match-title">IPL 2025 - Match 17</h3>
+            <div class="match-venue">🏟️ M. Chinnaswamy Stadium, Bangalore</div>
+          </div>
+
+          <div class="match-content">
+            <div class="teams">
+              <div class="team">
+                <div class="team-logo">RCB</div>
+                <div class="team-name">Royal Challengers</div>
+              </div>
+
+              <div class="vs">VS</div>
+
+              <div class="team">
+                <div class="team-logo">KKR</div>
+                <div class="team-name">Kolkata Knight Riders</div>
+              </div>
+            </div>
+
+            <div class="match-info">
+              <div class="info-row">
+                <div class="info-label">Status:</div>
+                <div class="info-value">Tickets Available</div>
+              </div>
+            </div>
+
+          </div>
+      </section>
+
+      <script src="./js/index.js"></script>
+    </div>
+  </main>
 </body>
 
 </html>
