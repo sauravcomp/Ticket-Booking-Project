@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const {connectDB, User, Admin} = require('./dbschema')
+const jwt = require('jsonwebtoken');
+const {connectDB, User, Admin} = require('./dbschema');
 const dotenv = require('dotenv');
 dotenv.config();
 

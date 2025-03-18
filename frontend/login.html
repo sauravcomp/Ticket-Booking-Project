@@ -45,11 +45,11 @@
         <h1>Login to Your Account</h1>
         
         <div class="login-tabs">
-          <div class="tab active">User Login</div>
-          <div class="tab">Admin Login</div>
+          <div class="tab active" data-tab="user">User Login</div>
+          <div class="tab" data-tab="admin">Admin Login</div>
         </div>
         
-        <form class="login-form">
+        <div class="login-form">
           <div>
             <label for="text">Enter UserName</label>
             <input type="username" id="username" placeholder="Enter your Username" required>
@@ -63,8 +63,7 @@
          
           <button type="submit" class="login-button" id="loginbtn">Log In</button>
           
-         
-        </form>
+         </div>
       </div>
     </div>
   </main>
@@ -83,14 +82,38 @@
           this.classList.add('active');
           formContainers.forEach(form => form.classList.remove('active'));
           const tabType = this.getAttribute('data-tab');
-          document.getElementById(`${tabType}-form`).classList.add('active');
         });
       });
     });
 
     document.getElementById('loginbtn').addEventListener('click',()=>{
-        console.log('location',window.location)
-        window.location.href = 'http://127.0.0.1:5500/frontend/index.html'
+        // window.location.href = 'http://127.0.0.1:5500/frontend/index.html'
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const type = document.querySelector('.tab.active').getAttribute('data-tab');
+        console.log(type)
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                password,
+                type
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.message === 'login success'){
+              localStorage.setItem('token', data.token);
+              alert('login success')
+                window.location.href = 'http://127.0.0.1:5500/frontend/index.html'
+            }
+            else{
+                alert(data.message)
+            }
+        })
     })
     
   </script>
