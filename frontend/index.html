@@ -32,7 +32,7 @@
 
       <div style="cursor: pointer;" id="nav4" style="display: flex; justify-content: center; align-items: center;">
           <img width="40" src="./images/user_profile.png" alt="user" />
-          <div id="username" style=""></div>
+          <div id="username"></div>
       </div>
     </nav>
   </header>
@@ -103,93 +103,11 @@
         </form>
       </section>
 
-      <section class="matches-container">
-        <!-- Match Card 1 -->
-        <div class="match-card">
-          <div class="match-header">
-            <div class="match-date">Sunday, March 16, 2025 | 7:30 PM</div>
-            <h3 class="match-title">IPL 2025 - Match 12</h3>
-            <div class="match-venue">🏟️ Wankhede Stadium, Mumbai</div>
-            <div class="match-badge">TRENDING</div>
-          </div>
-
-          <div class="match-content">
-            <div class="teams">
-              <div class="team">
-                <div class="team-logo">MI</div>
-                <div class="team-name">Mumbai Indians</div>
-              </div>
-
-              <div class="vs">VS</div>
-
-              <div class="team">
-                <div class="team-logo">CSK</div>
-                <div class="team-name">Chennai Super Kings</div>
-              </div>
-            </div>
-
-            <div class="match-info">
-              <div class="info-row">
-                <div class="info-label">Status:</div>
-                <div class="info-value">Tickets Available</div>
-              </div>
-            </div>
-
-            <div class="ticket-types">
-              <div class="ticket-type">
-                <div class="ticket-name">General Stand</div>
-                <div class="ticket-price">₹1,500</div>
-              </div>
-              <div class="tickets-remaining">452 tickets remaining</div>
-
-              <div class="ticket-type">
-                <div class="ticket-name">Premium Stand</div>
-                <div class="ticket-price">₹3,000</div>
-              </div>
-              <div class="tickets-remaining">215 tickets remaining</div>
-
-              <div class="ticket-type">
-                <div class="ticket-name">VIP Box</div>
-                <div class="ticket-price">₹8,000</div>
-              </div>
-              <div class="tickets-remaining">32 tickets remaining</div>
-            </div>
-
-            <button class="book-btn">Book Now</button>
-          </div>
+      <!-- want to add 3  -->
+      <section class="matches-container" style="overflow: auto; width: 100%;">
+  
+        <div id="matches" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin: 12px; gap: 12px;">
         </div>
-
-        <!-- Match Card 2 -->
-        <div class="match-card">
-          <div class="match-header">
-            <div class="match-date">Saturday, March 22, 2025 | 3:30 PM</div>
-            <h3 class="match-title">IPL 2025 - Match 17</h3>
-            <div class="match-venue">🏟️ M. Chinnaswamy Stadium, Bangalore</div>
-          </div>
-
-          <div class="match-content">
-            <div class="teams">
-              <div class="team">
-                <div class="team-logo">RCB</div>
-                <div class="team-name">Royal Challengers</div>
-              </div>
-
-              <div class="vs">VS</div>
-
-              <div class="team">
-                <div class="team-logo">KKR</div>
-                <div class="team-name">Kolkata Knight Riders</div>
-              </div>
-            </div>
-
-            <div class="match-info">
-              <div class="info-row">
-                <div class="info-label">Status:</div>
-                <div class="info-value">Tickets Available</div>
-              </div>
-            </div>
-
-          </div>
       </section>
 
       <script src="./js/index.js"></script>
@@ -197,6 +115,69 @@
         const username = localStorage.getItem('username');
         console.log(username)
         document.getElementById('username').innerHTML = username.toUpperCase();
+
+        document.addEventListener("DOMContentLoaded", async () => {
+    const matchContainer = document.getElementById("matches");
+    
+    try {
+        const response = await fetch("http://localhost:3000/getmatches");
+        const matches = await response.json();
+        
+        matches.forEach((match, index) => {
+            const matchCard = document.createElement("div");
+            matchCard.className = "match-card";
+            matchCard.innerHTML = `
+                <div class="match-header">
+                    <div class="match-date">${new Date(match.date).toDateString()} | ${match.time}</div>
+                    <h3 class="match-title">IPL 2025 - Match ${index + 1}</h3>
+                    <div class="match-venue">🏟️ ${match.ground}</div>
+                    <div class="match-badge">TRENDING</div>
+                </div>
+                <div class="match-content">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-logo">${match.team1.name.split(" ")[0]}</div>
+                            <div class="team-name">${match.team1.name}</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo">${match.team2.name.split(" ")[0]}</div>
+                            <div class="team-name">${match.team2.name}</div>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <div class="info-row">
+                            <div class="info-label">Status:</div>
+                            <div class="info-value">Tickets Available</div>
+                        </div>
+                    </div>
+                    <div class="ticket-types">
+                        <div class="ticket-type">
+                            <div class="ticket-name">General Stand</div>
+                            <div class="ticket-price">₹1,500</div>
+                        </div>
+                        <div class="tickets-remaining">${Math.floor(Math.random() * 500)} tickets remaining</div>
+                        <div class="ticket-type">
+                            <div class="ticket-name">Premium Stand</div>
+                            <div class="ticket-price">₹3,000</div>
+                        </div>
+                        <div class="tickets-remaining">${Math.floor(Math.random() * 250)} tickets remaining</div>
+                        <div class="ticket-type">
+                            <div class="ticket-name">VIP Box</div>
+                            <div class="ticket-price">₹8,000</div>
+                        </div>
+                        <div class="tickets-remaining">${Math.floor(Math.random() * 100)} tickets remaining</div>
+                    </div>
+                    <button class="book-btn">Book Now</button>
+                </div>
+            `;
+            matchContainer.appendChild(matchCard);
+        });
+    } catch (error) {
+        console.error("Error fetching matches:", error);
+    }
+});
+
 
       </script>
     </div>
