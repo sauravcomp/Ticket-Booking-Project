@@ -30,9 +30,9 @@
         </li>
       </ul>
 
-      <div style="cursor: pointer;" id="nav4">
+      <div style="cursor: pointer;" id="nav4" style="display: flex; justify-content: center; align-items: center;">
           <img width="40" src="./images/user_profile.png" alt="user" />
-        </span>
+          <div id="username" style=""></div>
       </div>
     </nav>
   </header>
@@ -193,6 +193,12 @@
       </section>
 
       <script src="./js/index.js"></script>
+      <script>
+        const username = localStorage.getItem('username');
+        console.log(username)
+        document.getElementById('username').innerHTML = username.toUpperCase();
+
+      </script>
     </div>
   </main>
 </body>

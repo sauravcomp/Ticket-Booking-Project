@@ -45,9 +45,9 @@
                 </div>
 
                 <div class="user-profile-info">
-                    <h2 class="user-name">Saurav Kamble</h2>
-                    <div class="user-email">sauravkamble@gmail.com</div>
-                    <div class="user-phone">+91 8999105272</div>
+                    <h2 class="user-name" id="username"></h2>
+                    <div class="user-email" id="email"></div>
+                    <div class="user-phone" id="mobile"></div>
                 </div>
             </div>
 
@@ -86,5 +86,13 @@
     </main>
 
     <script src="./js/index.js"></script>
+    <script>
+      const username = localStorage.getItem('username');
+      document.getElementById('username').innerHTML = username.toUpperCase();
+      const email = localStorage.getItem('email');
+      document.getElementById('email').innerHTML = email;
+      const mobile = localStorage.getItem('mobile');
+      document.getElementById('mobile').innerHTML = mobile;
+    </script>
 </body>
 </html>

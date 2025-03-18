@@ -13,12 +13,20 @@ app.use(express.json());
 
 app.post('/login', async(req, res) => {
     const {username, password, type} = req.body;
-    if(type === 'user'){
-        const user = await User.findOne({username});
+
+    switch (type){
+        case 'user':
+            const user = await User.findOne({username});
         if(user){
             if(user.password === password){
                 const token = jwt.sign({username}, process.env.JWT_SECRET);
-                res.send({message: 'login success', token});
+                res.send({
+                    message: 'login success', 
+                    token,
+                    username:user?.username,
+                    email:user?.email,
+                    mobile:user?.mobile
+                });
             }
             else{
                 res.send({message: 'invalid password'})
@@ -27,25 +35,29 @@ app.post('/login', async(req, res) => {
         else{
             res.send({message: 'user not found'})
         }
-    }
-    else if(type === 'admin'){
-        const admin = await Admin.findOne({username});
-        if(admin){
-            if(admin.password === password){
-                const token = jwt.sign({username}, process.env.JWT_SECRET);
-                res.send({message: 'login success', token});
+        break;
+
+        case 'admin':
+            const admin = await Admin.findOne({username});
+            if(admin){
+                if(admin.password === password){
+                    const token = jwt.sign({username}, process.env.JWT_SECRET);
+                    res.send({
+                        message: 'login success',
+                        token,
+                        username:admin?.username,
+                        email:admin?.email,
+                        mobile:admin?.mobile
+                    });
+                }
+                else{
+                    res.send({message: 'invalid password'})
+                }
             }
             else{
-                res.send({message: 'invalid password'})
+                res.send({message: 'user not found'})
             }
         }
-        else{
-            res.send({message: 'user not found'})
-        }
-    }
-    else{
-        res.send({message: 'invalid login'})
-    }
 });
 
 app.listen(port, () => {

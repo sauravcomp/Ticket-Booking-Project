@@ -4,7 +4,6 @@ dotenv.config()
 
 const connectDB = async() => {
     try{
-        console.log(process.env.DATABASE_URL);
         await mongoose.connect(process.env.DATABASE_URL);
         console.log('connected to database');
     } catch(err){
@@ -25,6 +24,14 @@ const UserSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true
+    },
+    email:{
+        type:String,
+        required:false
+    },
+    mobile:{
+        type:Number,
+        required:false
     }
 });
 
@@ -41,6 +48,14 @@ const AdminSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true
+    },
+    email:{
+        type:String,
+        required:false
+    },
+    mobile:{
+        type:Number,
+        required:false
     }
 });
 
