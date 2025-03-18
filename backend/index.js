@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const {connectDB, User, Admin} = require('./dbschema');
+const {connectDB, User, Admin, Ticket} = require('./dbschema');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -58,6 +58,16 @@ app.post('/login', async(req, res) => {
                 res.send({message: 'user not found'})
             }
         }
+});
+
+app.get('/getmatches', async (req, res) => { 
+    try {
+        const matches = await Ticket.find({});
+        res.send(matches);
+    } catch (error) {
+        console.error("Error fetching matches:", error);
+        res.sendStatus(500);
+    }
 });
 
 app.listen(port, () => {
