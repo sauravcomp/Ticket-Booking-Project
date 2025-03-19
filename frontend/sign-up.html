@@ -5,82 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CricketBooker - Sign Up</title>
     <link rel="stylesheet" href="./css/sign-up.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .logo {
-            width: 200px;
-            margin-bottom: 10px;
-        }
-        h1 {
-            color: #1e3c72;
-        }
-        .input-group {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        .btn {
-            background: #1e3c72;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-        }
-        .btn:hover {
-            background: #163a69;
-        }
-        .link {
-            margin-top: 10px;
-            display: block;
-            color: #1e3c72;
-            text-decoration: none;
-        }
-        .link:hover {
-            text-decoration: underline;
-        }
-        .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: #ff6600;
-    }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -90,7 +14,13 @@
             </nav>
           </header>
         <h1>Sign Up</h1>
-        <form>
+        <div>
+            <div class="input-group" style="margin-bottom: 1rem;">
+                <select name="role" id="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" placeholder="Enter your Username" required>
@@ -109,7 +39,62 @@
             </div>
             <button type="submit" class="btn">Sign Up</button>
             <a href="./login.html" class="link">Already have an account? Login</a>
-        </form>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('username').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('password').focus();
+            }
+        });
+        document.getElementById('password').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('email').focus();
+            }
+        });
+        document.getElementById('email').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('mobile').focus();
+            }
+        });
+        document.getElementById('mobile').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('btn').focus();
+            }
+        }); 
+        document.getElementById('btn').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('btn').click();
+            }
+        }); 
+
+        document.getElementById('btn').addEventListener('click', async() => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const role = document.getElementById('role').value;
+
+            const res = await fetch('http://localhost:3000/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    email,
+                    mobile,
+                    role,
+                }),
+            });
+            const data = await res.json();
+            if (data.message === 'User registered successfully') {
+                alert('User registered successfully');
+                window.location.href = 'http://localhost:3000/user/login';
+            }
+        })
+    </script>
 </body>
 </html>
