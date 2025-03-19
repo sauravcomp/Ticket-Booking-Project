@@ -15,38 +15,35 @@ app.use(express.json());
 app.post('/user/register', async(req, res) => {
     const {username, password, email, mobile, role} = req.body;
     if(role !== 'user' && role !== 'admin'){
-        res.status(400).send('Invalid role');
+        res.status(400).json({message: 'Invalid role'});
     }
     if(!username || !password || !email || !mobile){
-        res.status(400).send('All fields are required');
+        res.status(400).json({message: 'All fields are required'});
     }
 
     switch(role){
         case 'user':
             const user = await User.findOne({username});
                 if(user){
-                    res.status(400).send('Username already exists');
+                    res.status(400).json({message: 'Username already exists'});
                 }else{
                     const newUser = new User({username, password, email, mobile, type: role});
                     await newUser.save();
-                    res.send('User registered successfully');
+                    res.json({message: 'User registered successfully'});
                 }
             break;
         case 'admin':
             const admin = await Admin.findOne({username});
             if(admin){
-                res.status(400).send('Username already exists');
+                res.status(400).json({message: 'Username already exists'});
             }else{
                 const newAdmin = new Admin({username, password, email, mobile, type: role});
                 await newAdmin.save();
-                res.send('User registered successfully');
+                res.json({message: 'User registered successfully'});
             }
             break;
     }       
 
-    res.json({message: 'User registered successfully'});
-    return;
-   
 });
 
 app.post('/login', async(req, res) => {
