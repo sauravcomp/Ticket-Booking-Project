@@ -14,7 +14,7 @@ body {
 }
 
 header {
-  background-color: #1e3a8a;
+  /* background-color: #1e3a8a; */
   color: white;
   padding: 1rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -31,11 +31,13 @@ nav {
 
 .logo {
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 700;
+  color: #0066cc;
+  text-decoration: none;
 }
 
 .logo span {
-  color: #4ade80;
+  color: #ff6600;
 }
 
 .nav-links a {

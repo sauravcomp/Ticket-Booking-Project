@@ -120,7 +120,11 @@
     const matchContainer = document.getElementById("matches");
     
     try {
-        const response = await fetch("http://localhost:3000/getmatches");
+        const response = await fetch("http://localhost:3000/getmatches",{
+          headers:{
+            authorization:localStorage.getItem('token')
+          }
+        });
         const matches = await response.json();
         
         matches.forEach((match, index) => {

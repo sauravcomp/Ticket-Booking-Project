@@ -36,7 +36,7 @@
       </header>
     <main>
         <div style="display: flex; justify-content: center; align-items: center; margin-top: 23px;">
-            <h1 class="page-title">User Profile</h1>
+            <h1 class="page-title"><span id="role"></span> PROFILE</h1>
         </div>
         <div class="user-profile-container">
             <div class="user-profile-sidebar">
@@ -45,8 +45,11 @@
                 </div>
 
                 <div class="user-profile-info">
-                    <h2 class="user-name" id="username"></h2>
-                    <div class="user-email" id="email"></div>
+                  <h2 id="usertype"></h2>
+                    <h2 class="user-name" id="username">
+                    </h2>
+                    <div class="user-email" id="email">
+                    </div>
                     <div class="user-phone" id="mobile"></div>
                 </div>
             </div>
@@ -93,6 +96,8 @@
       document.getElementById('email').innerHTML = email;
       const mobile = localStorage.getItem('mobile');
       document.getElementById('mobile').innerHTML = mobile;
+      document.getElementById('role').innerHTML = localStorage.getItem('role').toUpperCase()
+      document.getElementById('usertype').innerHTML = localStorage.getItem('role').toUpperCase()
     </script>
 </body>
 </html>

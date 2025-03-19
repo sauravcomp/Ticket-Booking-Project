@@ -91,7 +91,7 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const type = document.querySelector('.tab.active').getAttribute('data-tab');
-        console.log(type)
+        localStorage.setItem('role',type)
         fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {

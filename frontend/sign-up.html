@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricketBooker - Sign Up</title>
+    <link rel="stylesheet" href="./css/sign-up.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .logo {
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #1e3c72;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .btn {
+            background: #1e3c72;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #163a69;
+        }
+        .link {
+            margin-top: 10px;
+            display: block;
+            color: #1e3c72;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #ff6600;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+              <div class="logo">Cricket<span>Booker</span></div>
+            </nav>
+          </header>
+        <h1>Sign Up</h1>
+        <form>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your Username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your Password" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your Email">
+            </div>
+            <div class="input-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="number" id="mobile" placeholder="Enter your Mobile Number">
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+            <a href="./login.html" class="link">Already have an account? Login</a>
+        </form>
+    </div>
+</body>
+</html>
