@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const {connectDB, User, Admin, Ticket} = require('./dbschema');
+const {authMiddleware} = require('./middleware');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -11,6 +12,43 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.post('/user/register', async(req, res) => {
+    const {username, password, email, mobile, role} = req.body;
+    if(role !== 'user' && role !== 'admin'){
+        res.status(400).send('Invalid role');
+    }
+    if(!username || !password || !email || !mobile){
+        res.status(400).send('All fields are required');
+    }
+
+    switch(role){
+        case 'user':
+            const user = await User.findOne({username});
+                if(user){
+                    res.status(400).send('Username already exists');
+                }else{
+                    const newUser = new User({username, password, email, mobile, type: role});
+                    await newUser.save();
+                    res.send('User registered successfully');
+                }
+            break;
+        case 'admin':
+            const admin = await Admin.findOne({username});
+            if(admin){
+                res.status(400).send('Username already exists');
+            }else{
+                const newAdmin = new Admin({username, password, email, mobile, type: role});
+                await newAdmin.save();
+                res.send('User registered successfully');
+            }
+            break;
+    }       
+
+    res.json({message: 'User registered successfully'});
+    return;
+   
+});
+
 app.post('/login', async(req, res) => {
     const {username, password, type} = req.body;
 
@@ -19,7 +57,7 @@ app.post('/login', async(req, res) => {
             const user = await User.findOne({username});
         if(user){
             if(user.password === password){
-                const token = jwt.sign({username}, process.env.JWT_SECRET);
+                const token = jwt.sign({username,id:user._id}, process.env.JWT_SECRET);
                 res.send({
                     message: 'login success', 
                     token,
@@ -41,7 +79,7 @@ app.post('/login', async(req, res) => {
             const admin = await Admin.findOne({username});
             if(admin){
                 if(admin.password === password){
-                    const token = jwt.sign({username}, process.env.JWT_SECRET);
+                    const token = jwt.sign({username, id:admin._id}, process.env.JWT_SECRET);
                     res.send({
                         message: 'login success',
                         token,
@@ -60,7 +98,7 @@ app.post('/login', async(req, res) => {
         }
 });
 
-app.get('/getmatches', async (req, res) => { 
+app.get('/getmatches',authMiddleware, async (req, res) => { 
     try {
         const matches = await Ticket.find({});
         res.send(matches);
