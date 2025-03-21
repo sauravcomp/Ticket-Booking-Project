@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cancel Booking</title>
+  <link rel="stylesheet" href="./css/cancle-booking.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+          <a href="#" class="logo">Cricket<span>Booker</span></a>
+          <ul class="nav-menu">
+            <li class="nav-item" id="nav1">
+              <span class="nav-link">
+                Ticket Booking
+              </span>
+            </li>
+            <li class="nav-item" id="nav2">
+              <span class="nav-link">
+                Book Ground
+              </span>
+            </li>
+            <li class="nav-item" id="nav3">
+              <span class="nav-link active">
+                Cancel Booking
+              </span>
+            </li>
+          </ul>
+    
+          <div style="cursor: pointer;" id="nav4" style="display: flex; justify-content: center; align-items: center;">
+              <img width="40" src="./images/user_profile.png" alt="user" />
+              <div id="username"></div>
+          </div>
+        </nav>
+      </header>
+      <div style="display: flex; justify-content: center; align-items: center; margin-top: 23px;">
+        <h1 class="page-title">Book Match Tickets</h1>
+      </div>
+  <div id="booking-details" style="padding: 24px;" ></div>
+  <button id="cancel-button" style="display: none;">Cancel Booking</button>
+
+  <script>
+    async function fetchBooking() {
+      try {
+        const response = await fetch('http://localhost:3000/getbooking', {
+          method: 'GET',
+          headers: { 'Authorization': localStorage.getItem('token') }
+        });
+        if (!response.ok) throw new Error('Failed to fetch booking');
+        
+        const bookingArray = await response.json();
+        const bookingDetails = document.getElementById('booking-details');
+        for(const booking of bookingArray){
+            bookingDetails.innerHTML += `
+                <div class="booking-card" id="booking-card-${booking._id}">
+                    <p><strong>Ground:</strong> ${booking.ground}</p>
+                    <p><strong>Date:</strong> ${new Date(booking.date).toLocaleString()}</p>
+                    <p><strong>Time:</strong> ${booking.time}</p>
+                    <p><strong>Tickets:</strong> ${booking.tickets}</p>
+                    <p><strong>Quantity:</strong> ${booking.quantity}</p>
+                    <button class="cancel-button" data-id="${booking._id}">Cancel Booking</button>
+                </div>
+                `;
+        
+            document.getElementById('booking-details').addEventListener('click', (e) => {
+                if (e.target.classList.contains('cancel-button')) {
+                    const matchId = e.target.getAttribute('data-id');
+                    cancelBooking(matchId);
+                }
+                });
+        }   
+      } catch (error) {
+        document.getElementById('booking-details').innerHTML = `<p>Error: ${error.message}</p>`;
+      }
+    }
+
+    async function cancelBooking(matchId) {
+        console.log(matchId)
+      try {
+        const response = await fetch('http://localhost:3000/canclebooking', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+          },
+          body: JSON.stringify({ matchId })
+        });
+        
+        const result = await response.json();
+        if (response.ok) {
+          document.getElementById('booking-details').innerHTML = '<p>Booking cancelled successfully!</p>';
+          document.getElementById('cancel-button').style.display = 'none';
+        }
+        window.location.reload();
+      } catch (error) {
+        alert('Error cancelling booking: ' + error.message);
+      }
+    }
+
+    fetchBooking();
+  </script>
+  <script src="./js/index.js"></script>
+</body>
+</html>
