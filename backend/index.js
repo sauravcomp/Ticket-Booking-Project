@@ -105,6 +105,64 @@ app.get('/getmatches',authMiddleware, async (req, res) => {
     }
 });
 
+app.post('/bookmatch', authMiddleware, async (req, res) => {
+    const {ground, date, time, team1, team2, tickets} = req.body;
+    if(!ground || !date || !time || !team1 || !team2 || !tickets){
+        res.status(400).json({message: 'All fields are required'});
+    }
+    try {
+        const match = await Ticket.create({
+            userId:req.userId,
+            ground,
+            date,
+            time,
+            team1:team1.name,
+            team2:team2.name,
+            tickets:tickets.type,
+            quantity:tickets.quantity
+        });
+        res.json({message: 'Match booked successfully'});
+    } catch (error) {
+        console.error("Error booking match:", error);
+        res.sendStatus(500);
+    }
+});
+
+app.get('/getbooking', authMiddleware, async (req, res) => {
+    try {
+        const match = await Ticket.find({userId: req.userId});
+        if(match){
+            res.json(match);
+        }
+        else{
+            res.status(404).json({message: 'Match not found'});
+        }
+    } catch (error) {
+        console.error("Error fetching match:", error);
+        res.sendStatus(500);
+    }
+});
+
+app.post('/canclebooking', authMiddleware, async (req, res) => {
+    const {matchId} = req.body;
+    if(!matchId){
+        res.status(400).json({message: 'All fields are required'});
+    }
+    try {
+        const match = await Ticket.findOne({_id: matchId, userId: req.userId});
+        if(match){
+            await match.deleteOne();
+            res.json({message: 'Match cancelled successfully'});
+        }
+        else{
+            res.status(404).json({message: 'Match not found'});
+        }
+    } catch (error) {
+        console.error("Error cancelling match:", error);
+        res.sendStatus(500);
+    }
+});
+
 app.listen(port, () => {
     connectDB();
   console.log(`Example app listening at http://localhost:${port}`);

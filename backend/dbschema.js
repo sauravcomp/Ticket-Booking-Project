@@ -60,6 +60,11 @@ const AdminSchema = new mongoose.Schema({
 });
 
 const TicketSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     ground: {
         type: String,
         required: true
@@ -75,32 +80,36 @@ const TicketSchema = new mongoose.Schema({
     team1: {
         name: {
             type: String,
-            required: true,
+            required: false,
         },
         captain: {
             type: String,
-            required: true
+            required: false
         },
         coach: {
             type: String,
-            required: true
+            required: false
         }
     },
     team2: {
         name: {
             type: String,
-            required: true,
+            required: false,
         },
         captain: {
             type: String,
-            required: true
+            required: false
         },
         coach: {
             type: String,
-            required: true
+            required: false
         }
     },
     tickets: {
+        type: String,
+        required: true
+    },
+    quantity: {
         type: Number,
         required: true
     }
